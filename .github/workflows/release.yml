@@ -1,4 +1,4 @@
-name: "release"
+name: "Create minor release"
 
 on:
   workflow_dispatch:
@@ -17,6 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Setup git user
         run: |
@@ -37,4 +39,4 @@ jobs:
         run: npm install -g release-it
 
       - name: Create minor release
-        run: release-it minor --ci --'git.commitMessage="v${version}"' --'git.tagName="v${version}"' --'git.tagMatch="v[0-9]*.[0-9]*.[0-9]*"' --git.requireCommits --github.release --'github.releaseName="v${version}"' --github.autoGenerate --no-npm
+        run: release-it minor --ci --'git.commitMessage="v${version}"' --'git.tagName="v${version}"' --'git.tagMatch="v[0-9]*.[0-9]*.[0-9]*"' --git.requireCommits --github.release --'github.releaseName="v${version}"' --github.autoGenerate
