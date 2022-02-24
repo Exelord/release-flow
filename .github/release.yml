@@ -1,0 +1,20 @@
+changelog:
+  categories:
+    - title: New Feature 🚀
+      labels:
+        - new feature
+    - title: Bugfix 🐞
+      labels:
+        - bugfix
+    - title: Maintenance 🛠
+      labels:
+        - maintenance
+    - title: Dependencies 🔌
+      labels:
+        - dependencies
+    - title: Improvement 🎉
+      labels:
+        - improvement
+    - title: Other Changes
+      labels:
+        - "*"
