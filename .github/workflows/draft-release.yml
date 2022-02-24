@@ -28,5 +28,7 @@ jobs:
         run: npm install -g npm
 
       - uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
