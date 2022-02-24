@@ -20,8 +20,8 @@ jobs:
 
       - name: Setup git user
         run: |
-            git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
-            git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
+            git config --global user.name github-actions[bot]
+            git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
 
       - name: Use Node.js
         uses: actions/setup-node@v2
@@ -37,4 +37,4 @@ jobs:
         run: npm install -g release-it
 
       - name: Create minor release
-        run: release-it minor --ci --'git.commitMessage="v${version}"' --'git.tagName="v${version}"' --git.requireCommits=true --github.release --'github.releaseName="v${version}"' --github.autoGenerate --no-npm.publish
+        run: release-it minor --ci --'git.commitMessage="v${version}"' --'git.tagName="v${version}"' --git.requireCommits=true --github.release --'github.releaseName="v${version}"' --github.autoGenerate --no-npm
