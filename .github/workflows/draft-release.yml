@@ -39,4 +39,4 @@ jobs:
         run: npm install -g release-it
 
       - name: Create minor release
-        run: release-it --no-increment --no-npm --no-git --github.release --github.update --github.releaseName="Next Release" --github.autoGenerate --github.draft
+        run: release-it --no-increment --no-npm --git.tagName="next" --git.requireCommits --github.release --github.update --github.releaseName="Next Release" --github.autoGenerate --github.draft
