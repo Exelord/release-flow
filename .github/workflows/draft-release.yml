@@ -14,13 +14,11 @@ env:
 
 jobs:
   release:
-    name: "Draft new release"
+    name: "Create draft release"
     runs-on: "ubuntu-latest"
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT_REPO_TOKEN }}
       
       - name: Setup git user
         run: |
