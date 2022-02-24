@@ -9,9 +9,6 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
-env:
-  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
 jobs:
   release:
     name: "Create draft release"
@@ -20,11 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Setup git user
-        run: |
-          git config user.name github-actions
-          git config user.email "41898282+github-actions@users.noreply.github.com"
-
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
@@ -35,8 +27,6 @@ jobs:
       - name: Install latest npm
         run: npm install -g npm
 
-      - name: Install release-it
-        run: npm install -g release-it
-
-      - name: Create minor release
-        run: release-it --no-increment --no-npm --no-git.push --git.tagName="HEAD" --github.release --github.update --github.releaseName="Next Release" --github.autoGenerate --github.draft
+      - uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
