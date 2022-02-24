@@ -37,4 +37,4 @@ jobs:
         run: npm install -g release-it
 
       - name: Create minor release
-        run: release-it minor --ci --'git.commitMessage="v${version}"' --'git.tagName="v${version}"' --git.requireCommits=true --github.release --'github.releaseName="v${version}"' --github.autoGenerate --no-npm
+        run: release-it minor --ci --'git.commitMessage="v${version}"' --'git.tagName="v${version}"' --git.requireCommits=true --github.release --'github.releaseName="v${version}"' --github.autoGenerate --no-npm --npm.ignoreVersion
