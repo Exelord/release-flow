@@ -1,0 +1,44 @@
+name: "Create release"
+
+on:
+  push:
+    branches:
+      - development
+
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+jobs:
+  release:
+    name: "Draft new release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT_REPO_TOKEN }}
+      
+      - name: Setup git user
+        run: |
+          git config user.name github-actions
+          git config user.email "41898282+github-actions@users.noreply.github.com"
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          check-latest: true
+          cache: 'npm'
+
+      - name: Install latest npm
+        run: npm install -g npm
+
+      - name: Install release-it
+        run: npm install -g release-it
+
+      - name: Create minor release
+        run: release-it --no-increment --no-npm --git.tagName="next" --git.requireCommits --github.release --'github.releaseName="Next' --github.autoGenerate --github.draft
